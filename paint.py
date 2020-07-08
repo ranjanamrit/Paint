@@ -30,8 +30,8 @@ class Paint(object):
         self.root.mainloop()
 
     def setup(self):
-        self.oldX = None
-        self.oldY = None
+        self.Xaxis = None
+        self.Yaxis = None
         self.lineWidth = self.chooseSizeButton.get()
         self.color = self.DEFAULT_COLOR
         self.eraserOn = False
@@ -61,15 +61,15 @@ class Paint(object):
     def paint(self, event):
         self.lineWidth = self.chooseSizeButton.get()
         paintColor = 'white' if self.eraserOn else self.color
-        if self.oldX and self.oldY:
-            self.canvas.create_line(self.oldX, self.oldY, event.x, event.y,
+        if self.Xaxis and self.Yaxis:
+            self.canvas.create_line(self.Xaxis, self.Yaxis, event.x, event.y,
                                width= self.lineWidth, fill=paintColor,
                                capstyle=ROUND, smooth= TRUE, splinesteps=40)
-        self.oldX=event.x
-        self.oldY=event.y
+        self.Xaxis=event.x
+        self.Yaxis=event.y
 
     def reset(self, event):
-        self.oldX, self.oldY= None, None
+        self.Xaxis, self.Yaxis= None, None
 
 if __name__ == '__main__':
     Paint()
